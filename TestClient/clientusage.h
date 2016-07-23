@@ -4,6 +4,9 @@
 #include <QTcpSocket>
 #include <QHostAddress>
 #include <QDebug>
+#include <iostream>
+
+using namespace std;
 
 class ClientUsage : public QTcpSocket
 {

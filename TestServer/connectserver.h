@@ -3,6 +3,7 @@
 
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <tcpthread.h>
 
 class ConnectServer : public QTcpServer
 {
@@ -10,13 +11,6 @@ class ConnectServer : public QTcpServer
 public:
     ConnectServer(QObject *parent=0);
     void incomingConnection(qintptr socketDescriptor);
-
-public slots:
-    void readFromClient();
-    void disconnect();
-
-private:
-    QTcpSocket *client;
 };
 
 #endif // CONNECTSERVER_H

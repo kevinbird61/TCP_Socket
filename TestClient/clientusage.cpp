@@ -17,18 +17,18 @@ ClientUsage::ClientUsage(QString server_name, int server_port, QObject *parent)
 void ClientUsage::readRequest()
 {
     qDebug() << "Start reading...";
-    if(this->canReadLine()){
-        qDebug() << "Read from server source (multiple line)...";
-        while(this->canReadLine()){
-            qDebug() << this->readLine();
-        }
-        qDebug() << "End read.";
+    // Fetch the comment from server
+    QString str = this->readLine().trimmed();
+    qDebug() << str << ".";
+    if(str == "OK"){
+        // You can send command now!
+        char cmdin[128];
+        cin >> cmdin;
+        this->write(QString(cmdin).toUtf8());
     }
     else{
-        qDebug() << "Read from server source : " << this->readLine();
+        qDebug() << "You can't send it , server hasn't prepared!";
     }
-    // Prepare write to server
-    this->write("Ok ! I receive it!");
 }
 
 void ClientUsage::disconnect()

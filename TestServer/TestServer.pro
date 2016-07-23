@@ -10,7 +10,9 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    connectserver.cpp
+    connectserver.cpp \
+    tcpthread.cpp
 
 HEADERS += \
-    connectserver.h
+    connectserver.h \
+    tcpthread.h
