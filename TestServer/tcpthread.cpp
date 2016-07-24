@@ -18,23 +18,45 @@ TcpThread::TcpThread(qintptr socketDescriptor)
     client->write("OK");
 }
 
+void TcpThread::readCommand(QString cmd)
+{
+    if(cmd == QString("quit")){
+        qDebug() << "Client want to disconnect!";
+        client->write("quit_OK");
+    }
+    else if(cmd == QString("help")){
+        QString help_cmd = QString(
+                    "request_help\n"
+                    "help : show the command we support\n"
+                    "quit : disconnect from server\n");
+        client->write(help_cmd.toUtf8());
+    }
+    else{
+        qDebug() << cmd << ". Not match!";
+        // Read all , tell client , server is ready again
+        client->write("request_help");
+    }
+}
+
 void TcpThread::readFromClient()
 {
     QTcpSocket *client = (QTcpSocket*) sender();
     qDebug() << "Start Reading from client:";
     if(client->canReadLine()){
-        qDebug() << "Read from client source (multiple line)...";
+        // Can implement in ChatRoom example , but now I don't need this
+        /*qDebug() << "Read from client source (multiple line)...";
         while(client->canReadLine()){
             qDebug() << QString::fromUtf8(client->readLine());
         }
         qDebug() << "End read.";
+        */
     }
     else{
-        qDebug() << "Read from client source : " << QString::fromUtf8(client->readLine());
+        QString str = QString::fromUtf8(client->readLine());
+        qDebug() << "Read from client source : " << str;
+        // identify the command send from client side
+        readCommand(str);
     }
-
-    // Read all , tell client , server is ready again
-    client->write("OK");
 }
 
 void TcpThread::disconnect()

@@ -9,6 +9,8 @@ class TcpThread : public QThread
     Q_OBJECT
 public:
     TcpThread(qintptr socketDescriptor);
+    // For shell implement
+    void readCommand(QString cmd);
 
 public slots:
     void readFromClient();

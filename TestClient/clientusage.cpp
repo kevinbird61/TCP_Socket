@@ -20,11 +20,27 @@ void ClientUsage::readRequest()
     // Fetch the comment from server
     QString str = this->readLine().trimmed();
     qDebug() << str << ".";
+    // Server's reply depend on user command , so complex command should have multiple send&receive!
     if(str == "OK"){
         // You can send command now!
+        qDebug() << "You can send your command now!";
         char cmdin[128];
         cin >> cmdin;
         this->write(QString(cmdin).toUtf8());
+    }
+    else if(str == "request_help"){
+        // Print out all existing command , which send from server
+        qDebug() << "The command we support : ";
+        while(this->canReadLine()){
+            cout << this->readLine().toStdString();
+        }
+        qDebug() << "Thank for your usage and please retype again.";
+        char cmdin[128];
+        cin >> cmdin;
+        this->write(QString(cmdin).toUtf8());
+    }
+    else if(str == "quit_OK"){
+        this->abort();
     }
     else{
         qDebug() << "You can't send it , server hasn't prepared!";
