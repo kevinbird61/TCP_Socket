@@ -11,6 +11,12 @@ class ConnectServer : public QTcpServer
 public:
     ConnectServer(QObject *parent=0);
     void incomingConnection(qintptr socketDescriptor);
+
+public slots:
+    void controlThreadID();
+
+private:
+    int threadID;
 };
 
 #endif // CONNECTSERVER_H
