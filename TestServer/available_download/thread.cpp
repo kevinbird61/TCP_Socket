@@ -22,23 +22,14 @@ TcpThread::TcpThread(qintptr socketDescriptor, int id)
 void TcpThread::readCommand(QString cmd)
 {
     // ========================== Pre-work ==========================
-    /* Using regular expression to test and match */
     QRegExp download("download_*");
     download.setPatternSyntax(QRegExp::Wildcard);
-    /* When the file is big enough , need to separate and then can send it. */
-    QRegExp conti_dl;
-    if(!current_filename.isEmpty()){
-        conti_dl = QRegExp(current_filename+"_*");
-        conti_dl.setPatternSyntax(QRegExp::Wildcard);
-    }
     // ========================== Pre-work ==========================
 
-    /* quit command */
     if(cmd.compare(QString("quit"),Qt::CaseSensitive) == 0){
         qDebug() << "Client want to disconnect!";
         client->write("quit_OK");
     }
-    /* help command */
     else if(cmd.compare(QString("help"),Qt::CaseSensitive) == 0){
         QString help_cmd = QString(
                     "request_help\n"
@@ -49,7 +40,6 @@ void TcpThread::readCommand(QString cmd)
                     );
         client->write(help_cmd.toUtf8());
     }
-    /* ls command */
     else if(cmd.compare(QString("ls"),Qt::CaseSensitive) == 0){
         QDir dir(QDir::currentPath() + "/" + SERVER_FILE);
         dir.setFilter(QDir::Files | QDir::Hidden );
@@ -60,7 +50,6 @@ void TcpThread::readCommand(QString cmd)
         }
         client->write(listfile.toUtf8());
     }
-    /* download start */
     else if(download.exactMatch(cmd)){ // using regular expression to match
         // Get the filename that user want to download
         QString match = cmd.section("_",1,1);
@@ -79,37 +68,30 @@ void TcpThread::readCommand(QString cmd)
             return;
         }
         // If available , using data stream to deliver
-        QString d_result = QString("request_download_"+match+"\n");
-        current_filename = match;
+        QString f_src,f_content,d_result = QString("request_download_"+match+"\n");
         download_File.open(QIODevice::ReadOnly);
-        file_storage.clear();
-        file_storage = download_File.readAll();
-        download_File.close();
-        // Send back the message and file content to client. Tell client ready to get the multi-times of send and receive work if the file is huge.
-        client->write(QByteArray(d_result.toStdString().c_str(),d_result.size()));
-    }
-    /* download and continue send */
-    else if(conti_dl.exactMatch(cmd)){
-        // deal with file deliver
-        QString check = cmd.section("_",1,1);
-        // Get the current start position
-        int current_tag = check.toInt();
-        int capacity = 16384;
-        int start = (current_tag-1)*capacity;
-        int end = (current_tag)*capacity;
-        // Base on check , as the current tag we has to send
-        if(end > file_storage.length()){
-            QByteArray send_piece("request_download_complete\n");
-            send_piece += (file_storage.mid(start));
-            client->write(send_piece);
+
+        QStringList f_name_content = d_result.split(".");
+        f_content = f_name_content.at(1);
+        f_content.chop(1);
+        qDebug() << f_content;
+
+        if(f_content == "bin" || f_content == "exe" || f_content == "dat"){
+            // using binary read , without any toUnicode
+            f_src = readFileSource(SERVER_FILE+match , 0);
+        }
+        else if( f_content == "txt" || f_content == "doc" || f_content == "csv"){
+            f_src = readFileSource(SERVER_FILE+match , 1);
         }
         else{
-            QByteArray send_piece("request_download_conti\n");
-            send_piece += (file_storage.mid( start , capacity));
-            client->write(send_piece);
+            f_src = readFileSource(SERVER_FILE+match , 0);
         }
+        qDebug() << f_src;
+        d_result += f_src;
+        download_File.close();
+        // Send back the message and file content to client. Tell client ready to get the multi-times of send and receive work if the file is huge.
+        client->write(d_result.toUtf8());
     }
-    /* Can't not recognize command */
     else{
         qDebug() << cmd << ". Not match!";
         // Read all , tell client , server is ready again
@@ -122,6 +104,25 @@ void TcpThread::readCommand(QString cmd)
                     );
         client->write(help_cmd.toUtf8());
     }
+}
+
+QString TcpThread::readFileSource(QString filepath , int mode)
+{
+    string str,result;
+    ifstream myFile(filepath.toStdString() , ios::in | ios::binary);
+    QTextCodec *codec = QTextCodec::codecForName("Big5");
+    while(getline(myFile,str)){
+        qDebug() << QString::fromStdString(str);
+        // Decode whether if there are chinese
+        if(mode == 0){
+            result += str;
+        }
+        else{
+            result += codec->toUnicode(str.c_str()).toStdString() + "\n";
+        }
+    }
+    myFile.close();
+    return QString::fromStdString(result.c_str());
 }
 
 void TcpThread::readFromClient()

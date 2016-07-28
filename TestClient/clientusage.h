@@ -3,6 +3,8 @@
 
 #include <QTcpSocket>
 #include <QHostAddress>
+#include <QTextCodec>
+#include <QDataStream>
 #include <QDebug>
 #include <QFile>
 #include <iostream>
@@ -18,6 +20,11 @@ public:
 public slots:
     void readRequest();
     void disconnect();
+
+private:
+    int file_tag;
+    QString current_file_name ;
+    QByteArray temp_storage;
 };
 
 #endif // CLIENTUSAGE_H

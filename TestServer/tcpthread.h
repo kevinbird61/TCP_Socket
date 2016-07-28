@@ -4,11 +4,16 @@
 #include <QTcpSocket>
 #include <QDataStream>
 #include <QHostAddress>
+#include <QTextCodec>
 #include <QStringList>
 #include <QThread>
 #include <QRegExp>
 #include <QDir>
 #include <iostream>
+#include <fstream>
+
+// Redirect to the server's storage
+#define SERVER_FILE "available_download/"
 
 using namespace std;
 
@@ -29,6 +34,8 @@ public slots:
 
 private:
     QTcpSocket *client;
+    QByteArray file_storage;
+    QString current_filename;
 };
 
 #endif // TCPTHREAD_H

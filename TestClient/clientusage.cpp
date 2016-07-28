@@ -69,27 +69,48 @@ void ClientUsage::readRequest()
             cin >> cmdin;
             this->write(QString(cmdin).toUtf8());
         }
-        else{
-            // We can store this file with name $check's value
-            QFile result_file("DownloadTest/"+check);
+        else if(check.compare(QString("conti"),Qt::CaseSensitive) == 0){
+            // Continue file transmit
+            QByteArray temp = this->readAll();
+            temp_storage += temp;
+            file_tag++;
+            QString sender = current_file_name + "_" + QString::number(file_tag);
+            this->flush();
+            this->write(sender.toUtf8());
+        }
+        else if(check.compare(QString("complete"),Qt::CaseSensitive) == 0){
+            // Success done all transmit and can store with the file.
+            QByteArray temp = this->readAll();
+            temp_storage += temp;
+            // Write into file
+            QFile result_file("DownloadTest/"+current_file_name);
             result_file.open(QFile::WriteOnly);
-            qDebug() << "Storing....";
-            QString result = this->readAll();
-            qDebug() << result.toUtf8();
-            result_file.write(result.toLocal8Bit().data(),qstrlen(result.toLocal8Bit().data()));
+            result_file.write(temp_storage);
             result_file.close();
-            qDebug() << "*****Storage Complete!*****";
+            qDebug() << "*****Download Successfully !*****";
             qDebug() << "*****You can send your command now!*****";
             cout << "LiveGamer@Client_Socket$:";
             char cmdin[128];
             cin >> cmdin;
             this->write(QString(cmdin).toUtf8());
         }
+        else{
+            // We can store this file with name $check's value
+            // start the do the multiple send and receive work with file (when the file is getting bigger do) , and save the file name
+            file_tag = 1;
+            current_file_name = check;
+            temp_storage = "";
+            qDebug() << "*****Start to receive file from server! Please wait until to the whole file is transmitted.*****";
+            check += "_" + QString::number(file_tag);
+            this->flush();
+            this->write(check.toUtf8());
+        }
     }
     else if(str == "quit_OK"){
         this->abort();
     }
     else{
+        qDebug() << "Fail to match : " << str;
         qDebug() << "*****You can't send it , server hasn't prepared!*****";
     }
 }
