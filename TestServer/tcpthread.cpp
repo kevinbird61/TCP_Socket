@@ -45,7 +45,7 @@ void TcpThread::readCommand(QString cmd)
                     "help : show the command we support\n"
                     "quit : disconnect from server\n"
                     "ls : show the file in server side (can download)\n"
-                    "download_filename : download option , which can download the file from server side with the filename"
+                    "download_filename : download option , which can download the file from server side with the filename\n"
                     );
         client->write(help_cmd.toUtf8());
     }
@@ -113,14 +113,14 @@ void TcpThread::readCommand(QString cmd)
     else{
         qDebug() << cmd << ". Not match!";
         // Read all , tell client , server is ready again
-        QString help_cmd = QString(
+        QString notice_cmd = QString(
                     "request_help\n"
                     "help : show the command we support\n"
                     "quit : disconnect from server\n"
                     "ls : show the file in server side (can download)\n"
-                    "download_filename : download option , which can download the file from server side with the filename"
+                    "download_filename : download option , which can download the file from server side with the filename\n"
                     );
-        client->write(help_cmd.toUtf8());
+        client->write(notice_cmd.toUtf8());
     }
 }
 
