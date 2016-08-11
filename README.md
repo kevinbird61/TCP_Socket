@@ -13,15 +13,18 @@ Using Qt console mode to implement socket.
   2. Linux Version :
     - Only need to using Qt creator to open this project (TestServer or TestClient) , then clear the hold project and rebuild it.
   
-  ###### For download :
+  ###### For download & upload :
     - In /TestServer/available_download : the file that user can view from client , which user can using download command on those file.
     - In /TestClient/DownloadTest : the file that user download from server , store here.
+    - In /TestServer/upload : store the file upload from the client side.
+    - In /TestClient/upload : store the file that owned by the client. And they can be upload to server side with corresponding command.
 
 # Functional Support
-1. help : list out the command that server support
-2. quit : disconnect by user
-3. ls : list out all the file from server's current directory
-4. download_< filename > : download file from server , which user can assign the specific name in filename.
+1. *help* : list out the command that server support
+2. *quit* : disconnect by user
+3. *ls* : list out all the file from server's current directory
+4. *download_< filename >* : download file from server , which user can assign the specific name in filename.
+5. *upload_tag1_tag2* : upload file to server , which **tag1** is denoted as file/dir , and **tag2** is denoted as the filename.
 
 # Environment
   - (7/23) : Qt 5.7.0 Windows version (MinGW-32bits)
