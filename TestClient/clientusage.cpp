@@ -19,6 +19,8 @@ void ClientUsage::readRequest()
     // ========================== Pre-work ==========================
     QRegExp check_download("request_download_*");
     check_download.setPatternSyntax(QRegExp::Wildcard);
+    QRegExp check_upload("request_upload_*");
+    check_upload.setPatternSyntax(QRegExp::Wildcard);
     // ========================== Pre-work ==========================
     qDebug() << "Start reading...";
     // Fetch the comment from server
@@ -106,8 +108,52 @@ void ClientUsage::readRequest()
             this->write(check.toUtf8());
         }
     }
+    else if(check_upload.exactMatch(str)){
+        // Server recognize with upload command
+        QString file_name = str.section("_",2,2);
+        QString file_no = str.section("_",3,3);
+        int current_tag = file_no.toInt();
+        if(current_tag == 1){
+            // First package : find the file location , check if the file is exist or not
+            QFile upload_File("upload/"+file_name);
+            if(!upload_File.exists()){
+                qDebug() << "This file doesn't exist in client side! Please check it again!";
+                qDebug() << "*****You can send your command now!*****";
+                cout << "LiveGamer@Client_Socket$:";
+                char cmdin[128];
+                cin >> cmdin;
+                this->write(QString(cmdin).toUtf8());
+                return;
+            }
+            // If available , load out all the data info from file
+            upload_File.open(QIODevice::ReadOnly);
+            temp_storage.clear();
+            temp_storage = upload_File.readAll();
+            upload_File.close();
+        }
+        int capacity = 16384;
+        int start = (current_tag-1)*capacity;
+        int end = (current_tag)*capacity;
+        if(end > temp_storage.length()){
+            QByteArray send_piece("upload_complete_none\n");
+            send_piece += temp_storage.mid(start);
+            this->write(send_piece);
+        }
+        else{
+            QByteArray send_piece("upload_conti_none\n");
+            send_piece += temp_storage.mid(start,capacity);
+            this->write(send_piece);
+        }
+    }
     else if(str == "quit_OK"){
         this->abort();
+    }
+    else if(str == "request_jobdown"){
+        qDebug() << "*****You can send your command now!*****";
+        cout << "LiveGamer@Client_Socket$:";
+        char cmdin[128];
+        cin >> cmdin;
+        this->write(QString(cmdin).toUtf8());
     }
     else{
         qDebug() << "Fail to match : " << str;

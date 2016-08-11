@@ -34,8 +34,11 @@ public slots:
 
 private:
     QTcpSocket *client;
+    QTcpSocket *read_client;
     QByteArray file_storage;
+    QByteArray temp_storage;
     QString current_filename;
+    int file_tag;
 };
 
 #endif // TCPTHREAD_H

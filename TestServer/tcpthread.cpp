@@ -22,7 +22,7 @@ TcpThread::TcpThread(qintptr socketDescriptor, int id)
 void TcpThread::readCommand(QString cmd)
 {
     // ========================== Pre-work ==========================
-    /* Using regular expression to test and match */
+    /* (For download) Using regular expression to test and match */
     QRegExp download("download_*");
     download.setPatternSyntax(QRegExp::Wildcard);
     /* When the file is big enough , need to separate and then can send it. */
@@ -31,6 +31,10 @@ void TcpThread::readCommand(QString cmd)
         conti_dl = QRegExp(current_filename+"_*");
         conti_dl.setPatternSyntax(QRegExp::Wildcard);
     }
+    /* (For upload) Using regular expression to test and match */
+    QRegExp upload("upload_*");
+    upload.setPatternSyntax(QRegExp::Wildcard);
+
     // ========================== Pre-work ==========================
 
     /* quit command */
@@ -45,7 +49,7 @@ void TcpThread::readCommand(QString cmd)
                     "help : show the command we support\n"
                     "quit : disconnect from server\n"
                     "ls : show the file in server side (can download)\n"
-                    "download_filename : download option , which can download the file from server side with the filename"
+                    "download_filename : download option , which can download the file from server side with the filename\n"
                     );
         client->write(help_cmd.toUtf8());
     }
@@ -109,40 +113,83 @@ void TcpThread::readCommand(QString cmd)
             client->write(send_piece);
         }
     }
+    /* upload */
+    else if(upload.exactMatch(cmd)){
+        // Dealing with tag => with format : upload_tag1_tag2
+        // tag1 : file or dir , or flags(conti , complete or failure) ; tag2 : filename or dirname
+        QString tag1 = cmd.section("_",1,1);
+        QString tag2 = cmd.section("_",2,2);
+        if(tag1.compare(QString("failure"), Qt::CaseSensitive) == 0){
+            // failure occur
+            QString notice_cmd = QString(
+                        "request_help\n"
+                        "upload_tag1_tag2 : tag1 for type(file or dir) and tag2 for filename or directory name\n"
+                        "*** Another useful command: ***\n"
+                        "help : show the command we support\n"
+                        "quit : disconnect from server\n"
+                        "*** You need to upload your file again , also check whether this file is exist or not.***\n"
+                        );
+            client->write(notice_cmd.toUtf8());
+        }
+        else if(tag1.compare(QString("complete") , Qt::CaseSensitive) == 0){
+            // upload complete
+            // do storage
+            file_storage += temp_storage;
+            QFile result_file("upload/"+current_filename);
+            result_file.open(QFile::WriteOnly);
+            result_file.write(file_storage);
+            result_file.close();
+            // Send the message back
+            client->flush();
+            client->write(QString("request_jobdown\n").toUtf8());
+        }
+        else if(tag1.compare(QString("conti") , Qt::CaseSensitive) == 0){
+            // upload file continue
+            file_storage += temp_storage;
+            file_tag++;
+            QString sender = "request_upload_" + current_filename + "_" + QString::number(file_tag);
+            client->flush();
+            client->write(sender.toUtf8());
+        }
+        else{
+            // detect upload , first deliver
+            current_filename = tag2;
+            file_storage = "";
+            qDebug() << "*****Start to receive file from client! Please wait until to the whole file is transmitted.*****";
+            file_tag = 1;
+            tag2 = "request_upload_" + tag2+ "_" + QString::number(file_tag);
+            client->flush();
+            client->write(tag2.toUtf8());
+        }
+    }
     /* Can't not recognize command */
     else{
         qDebug() << cmd << ". Not match!";
         // Read all , tell client , server is ready again
-        QString help_cmd = QString(
+        QString notice_cmd = QString(
                     "request_help\n"
                     "help : show the command we support\n"
                     "quit : disconnect from server\n"
                     "ls : show the file in server side (can download)\n"
-                    "download_filename : download option , which can download the file from server side with the filename"
+                    "download_filename : download option , which can download the file from server side with the filename\n"
+                    "upload_tag1_tag2 : tag1 for type(file or dir) and tag2 for filename or directory name\n"
                     );
-        client->write(help_cmd.toUtf8());
+        client->write(notice_cmd.toUtf8());
     }
 }
 
 void TcpThread::readFromClient()
 {
-    QTcpSocket *client = (QTcpSocket*) sender();
+    read_client = (QTcpSocket*) sender();
     qDebug() << "Start Reading from client:";
-    if(client->canReadLine()){
-        // Can implement in ChatRoom example , but now I don't need this
-        /*qDebug() << "Read from client source (multiple line)...";
-        while(client->canReadLine()){
-            qDebug() << QString::fromUtf8(client->readLine());
-        }
-        qDebug() << "End read.";
-        */
-    }
-    else{
-        QString str = QString::fromUtf8(client->readLine());
-        qDebug() << "Read from client source : " << str;
-        // identify the command send from client side
-        readCommand(str);
-    }
+
+    QString str = QString::fromUtf8(read_client->readLine());
+    qDebug() << "Read from client source : " << str;
+    // Store the rest of the cotent (for the file storage)
+    temp_storage = read_client->readAll();
+    qDebug() << "Rest of the cotent : " << temp_storage;
+    // identify the command send from client side
+    readCommand(str);
 }
 
 void TcpThread::disconnect()

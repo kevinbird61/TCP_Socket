@@ -161,7 +161,14 @@ debug/moc_clientusage.cpp: C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QTcpSo
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qhostaddress.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QFile \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		clientusage.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++ -ID:/Dropbox/TestClient -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward clientusage.h -o debug\moc_clientusage.cpp
@@ -250,7 +257,14 @@ debug/main.o: main.cpp C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QCoreApplicat
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qhostaddress.h \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDebug
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QFile \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/clientusage.o: clientusage.cpp clientusage.h \
@@ -320,7 +334,14 @@ debug/clientusage.o: clientusage.cpp clientusage.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qhostaddress.h \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDebug
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QFile \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\clientusage.o clientusage.cpp
 
 debug/moc_clientusage.o: debug/moc_clientusage.cpp 

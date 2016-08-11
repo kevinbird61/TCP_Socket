@@ -8,11 +8,11 @@ ConnectServer::ConnectServer(QObject *parent)
 
 void ConnectServer::incomingConnection(qintptr socketDescriptor)
 {
-        TcpThread *thread = new TcpThread(socketDescriptor,threadID);
-        connect(thread,SIGNAL(finished()),thread,SLOT(deleteLater()));
-        connect(thread,SIGNAL(releaseID()),this,SLOT(controlThreadID()));
-        thread->start();
-        threadID++;
+    TcpThread *thread = new TcpThread(socketDescriptor,threadID);
+    connect(thread,SIGNAL(finished()),thread,SLOT(deleteLater()));
+    connect(thread,SIGNAL(releaseID()),this,SLOT(controlThreadID()));
+    thread->start();
+    threadID++;
 }
 
 void ConnectServer::controlThreadID()

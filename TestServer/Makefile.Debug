@@ -169,8 +169,20 @@ debug/moc_connectserver.cpp: C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QTcp
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QTcpSocket \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qtcpsocket.h \
 		tcpthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QThread \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QRegExp \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDir \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		connectserver.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++ -ID:/Dropbox/TestServer -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward connectserver.h -o debug\moc_connectserver.cpp
@@ -239,8 +251,21 @@ debug/moc_tcpthread.cpp: C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QTcpSock
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qhostaddress.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QThread \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QRegExp \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDir \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h \
 		tcpthread.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/bin/moc.exe
 	C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.7.0/5.7/mingw53_32/mkspecs/win32-g++ -ID:/Dropbox/TestServer -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork -IC:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.7.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward tcpthread.h -o debug\moc_tcpthread.cpp
@@ -333,8 +358,19 @@ debug/main.o: main.cpp C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QCoreApplicat
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QTcpSocket \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qtcpsocket.h \
 		tcpthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QThread \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QRegExp \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDir \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/connectserver.o: connectserver.cpp connectserver.h \
@@ -406,8 +442,20 @@ debug/connectserver.o: connectserver.cpp connectserver.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QTcpSocket \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qtcpsocket.h \
 		tcpthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QThread \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QRegExp \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDir \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\connectserver.o connectserver.cpp
 
 debug/tcpthread.o: tcpthread.cpp tcpthread.h \
@@ -475,8 +523,21 @@ debug/tcpthread.o: tcpthread.cpp tcpthread.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDataStream \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/QHostAddress \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtNetwork/qhostaddress.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QTextCodec \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qtextcodec.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QThread \
-		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qthread.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QRegExp \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/QDir \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qdir.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.7.0/5.7/mingw53_32/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\tcpthread.o tcpthread.cpp
 
 debug/moc_connectserver.o: debug/moc_connectserver.cpp 
