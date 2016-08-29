@@ -8,7 +8,7 @@ Using Qt console mode to implement socket.
 ###### Bugs Report Record :
    - (8/18): Run in different server , change from the original test environment - windows (localhost with localhost) , to "[server - ubuntu] [client - windows 10]" . The result in original test environment with download and upload functions are perfect ; But run the new test environment has occurred the bugs on download and upload , which can't recognize the delivering packages. [need to fix]  [ P.S : Linux to Linux test environment work perfectly too ] 
    - (8/21): Run in different server (Both in Linux) , but the consequences are the same. Need to check with the QByteArray and QTcoSocket's transport function - write().
-   - <span style="color:green;">Fix Bugs</span>(8/29): I narrow the size of each tcp sending packages , from 16384 bytes to 1024 bytes. And then upload and download function is complete. 
+   - *`Fix Bugs`* (8/29): I narrow the size of each tcp sending packages , from 16384 bytes to 1024 bytes. And then upload and download function is complete. 
 
 # Usage 
   1. Windows Version : 
